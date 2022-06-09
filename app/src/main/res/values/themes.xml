@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Diaryapp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Diarywrite" parent="Theme.Diaryapp">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="actionMenuTextColor">#FFF</item>
+    </style>
+
+    <style name="Emotionbg" parent="Theme.AppCompat.Dialog">
+        <item name="actionMenuTextColor">#000</item>
+        <item name="android:background">#FFA9A9A9</item>
+    </style>
+</resources>

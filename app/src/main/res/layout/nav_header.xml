@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:padding="10dp"
+    android:background="@color/toolbarColor">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/headicon"
+        android:src="@drawable/head"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headicon"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="0dp"
+        android:layout_centerInParent="true"
+        android:text="cgcga"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/motto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:text="你所热爱的就是你的生活"
+        android:textColor="#fff"
+        android:textSize="14dp" />
+
+
+</RelativeLayout>

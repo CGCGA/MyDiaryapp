@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/android_file/Diaryapp/app/src/main/res/layout/nav_header.xml" value="0.10260416666666666" />
+        <entry key="..\:/android_file/Diaryapp/app/src/main/res/menu/nav_menu.xml" value="0.10260416666666666" />
+        <entry key="..\:/android_file/Diaryapp/app/src/main/res/menu/toolbar.xml" value="0.10260416666666666" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1365" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/layout/activity_diary.xml" value="0.14635416666666667" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/layout/activity_main.xml" value="0.15670289855072464" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/layout/diary_item.xml" value="0.1" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/layout/emotion_item.xml" value="0.14114583333333333" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/layout/nav_header.xml" value="0.15670289855072464" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/layout/writediary.xml" value="0.1" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/menu/diary_menu.xml" value="0.1609375" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/menu/nav_menu.xml" value="0.19375" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/menu/toolbar.xml" value="0.19375" />
+        <entry key="..\:/androidapp/Diaryapp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.131" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
