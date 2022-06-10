@@ -2,6 +2,7 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/diaryLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,13 +37,17 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addfab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="16dp"
-            android:src="@drawable/test2"
-            app:elevation="8dp"/>
+            android:id="@+id/fab"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:fabCustomSize="50dp"
+            android:scaleType="center"
+            android:layout_gravity="center|bottom"
+            android:src="@drawable/ic_done"
+            android:tint="@android:color/white"
+            app:borderWidth="0.0dip"
+            app:elevation="8dp"
+            android:layout_margin="16dp"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -53,8 +58,7 @@
         android:layout_height="match_parent"
         android:id="@+id/nav"
         android:layout_gravity="start"
-        app:menu="@menu/nav_menu"
-        app:headerLayout="@layout/nav_header" />
+        app:menu="@menu/nav_menu"/>
 
 
 

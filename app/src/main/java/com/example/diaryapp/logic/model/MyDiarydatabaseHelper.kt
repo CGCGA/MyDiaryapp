@@ -17,13 +17,22 @@ class MyDiarydatabaseHelper(val context: Context, name: String, version: Int)
             "picture BLOB," +
             "emotion int)"
 
+    private val createUser = "create table User (" +
+            "id integer primary key autoincrement," +
+            "head BLOB," +
+            "name text," +
+            "sign text)"
+
     override fun onCreate(p0: SQLiteDatabase) {
         p0.execSQL(createDiary)
+        p0.execSQL(createUser)
         Toast.makeText(context, "Create succeeded", Toast.LENGTH_SHORT).show()
     }
 
     override fun onUpgrade(p0: SQLiteDatabase, p1: Int, p2: Int) {
-
+        p0.execSQL("drop table if exists Diary")
+        p0.execSQL("drop table if exists User")
+        onCreate(p0)
     }
 
 }

@@ -15,6 +15,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.diaryapp.logic.model.Databasejudge
+import com.example.diaryapp.logic.model.MyService
 import com.example.diaryapp.ui.Initialize
 import kotlinx.android.synthetic.main.activity_diary.*
 import java.io.ByteArrayOutputStream
@@ -22,8 +23,8 @@ import kotlin.concurrent.thread
 
 class DiaryActivity : AppCompatActivity() {
 
-    companion object{
-        const val DIARY_POSITION ="diary_position"
+    companion object {
+        const val DIARY_POSITION = "diary_position"
     }
 
     lateinit var diaryData: String
@@ -42,11 +43,12 @@ class DiaryActivity : AppCompatActivity() {
 
         //字节组照片转化
         val diaryImagebyt = diary.picture
-        val diaryImage = diaryImagebyt?.let { BitmapFactory.decodeByteArray(diaryImagebyt, 0, it.size) }
+        val diaryImage =
+            diaryImagebyt?.let { BitmapFactory.decodeByteArray(diaryImagebyt, 0, it.size) }
 
 
-        diaryData = diary.date?:"2022-0-0"
-        val diaryContent = diary.content?:"。。。"
+        diaryData = diary.date ?: "2022-0-0"
+        val diaryContent = diary.content ?: "。。。"
 
         setSupportActionBar(diarytoolbar)
         //设置toolbar上按钮
@@ -65,6 +67,10 @@ class DiaryActivity : AppCompatActivity() {
         Initialize.emoid = diary.emotion
         emoji.setImageResource(Initialize.choseImg(Initialize.emoid))
 
+
+        val intent = Intent(this, MyService::class.java)
+        startService(intent)
+
         val eintent = Intent(this, EmotionActivity::class.java)
         emoji.setOnClickListener {
             startActivity(eintent)
@@ -74,6 +80,8 @@ class DiaryActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        val intent = Intent(this, MyService::class.java)
+        stopService(intent)
         getNowData(diaryData)
     }
 
@@ -84,7 +92,7 @@ class DiaryActivity : AppCompatActivity() {
 
     //定义状态栏上菜单键功能
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             android.R.id.home -> {
 
                 //保存数据
@@ -137,7 +145,7 @@ class DiaryActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun getNowData(date: String) {
+    private fun getNowData(date: String) {
 
         val title = diarytitle.text
         val content = writediary.text
@@ -148,7 +156,7 @@ class DiaryActivity : AppCompatActivity() {
             values.put("title", title.toString())
             values.put("content", content.toString())
             values.put("emotion", emotion)
-            if(temnum == 1){
+            if (temnum == 1) {
                 values.put("picture", os.toByteArray())
             }
 
@@ -166,27 +174,28 @@ class DiaryActivity : AppCompatActivity() {
     //获取并储存图片
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-                if (resultCode == Activity.RESULT_OK && data != null) {
-                    //从uri中获取图片
-                    data.data?.let { uri ->
-                        val bitmap = getBitmapFromUri(uri)
-                        if(bitmap != null) {
-                            if(bitmap.allocationByteCount <= 64218112) {//若图片大于5m无法选择
-                                temnum = 1
-                                diaryimg.setImageBitmap(bitmap)
-                                thread {//压缩画质
-                                    bitmap.compress(Bitmap.CompressFormat.JPEG, 80, os)
-                                }
-                            } else {
-                                Log.d("cgtest", bitmap.allocationByteCount.toString())
-                                Toast.makeText(this, "图片大于5M请重新选择", Toast.LENGTH_SHORT).show()
-                            }
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            //从uri中获取图片
+            data.data?.let { uri ->
+                val bitmap = getBitmapFromUri(uri)
+                if (bitmap != null) {
+                    if (bitmap.allocationByteCount <= 64218112) {//若图片大于5m无法选择
+                        temnum = 1
+                        diaryimg.setImageBitmap(bitmap)
+                        thread {//压缩画质
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, os)
                         }
-
-
+                    } else {
+                        Log.d("cgtest", bitmap.allocationByteCount.toString())
+                        Toast.makeText(this, "图片大于5M请重新选择", Toast.LENGTH_SHORT).show()
                     }
+                }
+
+
             }
+        }
     }
+
     //将uri转化成bitmap
     private fun getBitmapFromUri(uri: Uri) = contentResolver
         .openFileDescriptor(uri, "r")?.use {

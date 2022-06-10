@@ -3,7 +3,7 @@
     <item
         android:id="@+id/the1"
         android:icon="@drawable/test2"
-        android:title="the1" />
+        android:title="更改用户信息" />
     <item
         android:id="@+id/the2"
         android:icon="@drawable/test2"

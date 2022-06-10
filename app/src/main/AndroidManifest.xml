@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.diaryapp">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".DiaryApplication"
         android:allowBackup="true"
@@ -10,9 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Diaryapp">
+        <service
+            android:name=".logic.model.MyService"
+            android:enabled="true"
+            android:exported="true">
+
+        </service>
+
         <activity
             android:name=".ChangeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Diarywrite" />
         <activity
             android:name=".EmotionActivity"
             android:exported="false"
@@ -32,6 +43,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".logic.model.MyBroadcastRecriver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.diaryapp.logic.model.MY_BROADCAST_RERIVER" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name=".logic.dao.DatabaseProvider"
+            android:authorities="com.example.Diaryapp.provider"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>

@@ -10,12 +10,14 @@ import com.example.diaryapp.R
 import com.example.diaryapp.logic.model.DiaryAdapter
 import com.example.diaryapp.logic.model.Diarydata
 import com.example.diaryapp.logic.model.MyDiarydatabaseHelper
+import de.hdodenhof.circleimageview.CircleImageView
 
 object Initialize {
 
-    val dbHelper = MyDiarydatabaseHelper(DiaryApplication.context, "Diary.db", 1)
+    val dbHelper = MyDiarydatabaseHelper(DiaryApplication.context, "Diary.db", 2)
     val diarylist = ArrayList<Diarydata>()
     var emoid = 1
+
     //查询数据库
     @SuppressLint("Range")
     fun searchDiary() {
@@ -61,5 +63,7 @@ object Initialize {
         }
         return R.drawable.emotion_1
     }
+
+
 
 }

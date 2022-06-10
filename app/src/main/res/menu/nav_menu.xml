@@ -4,13 +4,24 @@
     <group android:checkableBehavior="single" >
 
         <item
-            android:id="@+id/new1"
+            android:id="@+id/openVibrate"
             android:icon="@drawable/test2"
-            android:title="new1" />
+            android:title="开启震动" />
 
         <item
-            android:id="@+id/new2"
+            android:id="@+id/closeVibrate"
             android:icon="@drawable/test2"
-            android:title="new2" />
+            android:title="关闭震动" />
     </group>
+
+    <item
+        android:id="@+id/feedback"
+        android:icon="@drawable/test2"
+        android:title="反馈" />
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/test2"
+        android:title="关于" />
+
+
 </menu>
