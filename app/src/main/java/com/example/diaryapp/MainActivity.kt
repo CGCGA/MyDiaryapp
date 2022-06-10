@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
     var vibrate = false  //震动参数
 
     init {
-        Initialize.searchDiary()
-
-
-
+        thread {
+            //初始化查找日记列表
+            Initialize.searchDiary()
+        }
     }
 
     @SuppressLint("WrongThread")
@@ -70,12 +70,16 @@ class MainActivity : AppCompatActivity() {
             it.setHomeAsUpIndicator(R.drawable.menu)
         }
 
-        //判断震动开关
-        if (vibrate) {
-            nav.setCheckedItem(R.id.openVibrate)
-        } else {
-            nav.setCheckedItem(R.id.closeVibrate)
+        thread {
+            //判断震动开关
+            if (vibrate) {
+                nav.setCheckedItem(R.id.openVibrate)
+            } else {
+                nav.setCheckedItem(R.id.closeVibrate)
+            }
         }
+        //判断震动开关
+
 
         nav.setNavigationItemSelectedListener {
             when(it.itemId) {
@@ -121,6 +125,7 @@ class MainActivity : AppCompatActivity() {
 
             if (Initialize.judgeToday(today)) {
                 Toast.makeText(this, "今日日记已存在", Toast.LENGTH_SHORT).show()
+
             } else {
 
                 if (vibrate) {
@@ -130,11 +135,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
+                //图片的储存
+                val os = ByteArrayOutputStream()
+                val bitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_test)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+                thread {
 
-                    //图片的储存
-                    val os = ByteArrayOutputStream()
-                    val bitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_test)
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+
                     //将初始化数据存入数据库
 
                     Databasejudge.insertDatabase() {
@@ -144,6 +151,8 @@ class MainActivity : AppCompatActivity() {
                         )
                         return@insertDatabase values
                     }
+                }
+
 
 
                     //Mytest.diarylist.add(0, Diarydata("今日日记", today.toString(), "今日...", R.drawable.bg_test))
@@ -153,9 +162,10 @@ class MainActivity : AppCompatActivity() {
                         Diarydata("今日日记", today, "今日...", os.toByteArray(), 1)
                     )
                     adapter.notifyItemInserted(0)
+                Toast.makeText(this, "成功创建新日记", Toast.LENGTH_SHORT).show()
                 }
 
-                Toast.makeText(this, "成功创建新日记", Toast.LENGTH_SHORT).show()
+
 
 
 
@@ -172,11 +182,6 @@ class MainActivity : AppCompatActivity() {
         diaryrecy.adapter = adapter
         //Log.d("cgtest", "赢")
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
@@ -219,14 +224,17 @@ class MainActivity : AppCompatActivity() {
             imotto.text = tsign
         } else {
 
-            val os = ByteArrayOutputStream()
-            val bitmap = BitmapFactory.decodeResource(DiaryApplication.context.resources, R.drawable.head)
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
-            Databasejudge.insertUser {
-                val values = contentValuesOf("head" to os.toByteArray(), "name" to "用户cg",
-                    "sign" to "好好生活")
-                return@insertUser values
+            thread {
+                val os = ByteArrayOutputStream()
+                val bitmap = BitmapFactory.decodeResource(DiaryApplication.context.resources, R.drawable.head)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+                Databasejudge.insertUser {
+                    val values = contentValuesOf("head" to os.toByteArray(), "name" to "用户cg",
+                        "sign" to "好好生活")
+                    return@insertUser values
+                }
             }
+
         }
 
     }

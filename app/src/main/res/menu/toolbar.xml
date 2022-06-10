@@ -7,5 +7,9 @@
     <item
         android:id="@+id/the2"
         android:icon="@drawable/test2"
-        android:title="the2" />
+        android:title="导入数据" />
+    <item
+        android:id="@+id/the3"
+        android:icon="@drawable/test2"
+        android:title="导出数据" />
 </menu>
