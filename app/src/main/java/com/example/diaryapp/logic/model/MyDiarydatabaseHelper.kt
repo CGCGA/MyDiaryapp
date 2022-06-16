@@ -26,7 +26,7 @@ class MyDiarydatabaseHelper(val context: Context, name: String, version: Int)
     override fun onCreate(p0: SQLiteDatabase) {
         p0.execSQL(createDiary)
         p0.execSQL(createUser)
-        Toast.makeText(context, "数据库创建成功", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "初始化完成", Toast.LENGTH_SHORT).show()
     }
 
     override fun onUpgrade(p0: SQLiteDatabase, p1: Int, p2: Int) {

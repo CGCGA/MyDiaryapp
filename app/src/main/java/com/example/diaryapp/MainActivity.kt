@@ -36,10 +36,8 @@ class MainActivity : AppCompatActivity() {
     var vibrate = false  //震动参数
 
     init {
-        thread {
             //初始化查找日记列表
             Initialize.searchDiary()
-        }
     }
 
     @SuppressLint("WrongThread")
@@ -78,7 +76,6 @@ class MainActivity : AppCompatActivity() {
                 nav.setCheckedItem(R.id.closeVibrate)
             }
         }
-        //判断震动开关
 
 
         nav.setNavigationItemSelectedListener {
@@ -178,7 +175,11 @@ class MainActivity : AppCompatActivity() {
         super.onRestart()
         //Log.d("cgtest", "触发，返回")
         Initialize.searchDiary()
-        initchangeUser()
+
+        thread {
+            initchangeUser()
+        }
+
         diaryrecy.adapter = adapter
         //Log.d("cgtest", "赢")
     }
